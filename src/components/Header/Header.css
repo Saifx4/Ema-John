@@ -6,25 +6,20 @@
     text-align: center;
 }
 
-
-
-
-nav{
-  background-color: black;
-  line-height: 50px;
-  font-size: 20px;
-  text-align: center;
+.header nav{
+    background-color: black;
+    line-height: 40px;
+    font-size: 20px;
 }
 
-nav a {
+.header nav a{
     text-decoration: none;
-    margin: 20px;
-    padding: 10px;
-    color: lawngreen;
-   
+    color:white;
+    margin-right:20px;
+    padding:5px;
 }
 
-nav a:hover{
-    background-color: darkgray;
-    text-decoration: none;
+
+.header nav a:hover{
+    background-color: gray;
 }

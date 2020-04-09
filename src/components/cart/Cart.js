@@ -1,47 +1,34 @@
 import React from 'react';
-import './Cart.css'
+
 
 const Cart = (props) => {
 
-    const cart = props.cart;
+const totalPrice = props.cart.reduce((total,pd) => total+pd.price*pd.quantity,0);
 
-     const total = cart.reduce((total,prd) =>  prd.price, 0);
-
-     let shipping = 0;
-     if(total > 35){
-         shipping = 0;
-     }
-
-     else if (total > 15) {
-         shipping =4.99;
-     }
-
-     else if (total>0) {
-         shipping=12.99;
-     }
-
- const tax =Math.round (total/10);
-
- const grandTotal =total + shipping + tax;
-
-const formatNumber = num => {
-      const precision = num.toFixed(2);
-      return Number(precision);
+const tax = totalPrice /10;
+let ship = 0;
+if(totalPrice>35){
+    ship=0;
 }
-
-
-const styled={
-    color:'red'
+else if(totalPrice>10){
+    ship=4;
+}
+else if(totalPrice>0){
+  ship=12;
+}
+function getNumber(num){
+    return Number(num.toFixed(2))
 }
     return (
         <div>
-            <h4 style={styled} >Order Summary</h4>
-            <p>Items Ordered: {cart.length} </p>
-    <p>Product price : {formatNumber(total)} </p>
-    <p>Shipping cost: {shipping}</p>
-    <p>Tax + Vat: {tax}</p>
-
-    <p>Total price: {grandTotal}</p>
+            <h4>Total items : {props.cart.length}</h4>
+            <h4>All products price : {getNumber(totalPrice)}</h4>
+            <h4>Tax + Vat :{getNumber(tax)}</h4>
+    <h4>Shipping cost : {ship}</h4>
+    <h4>Grand  total : {getNumber(totalPrice+ship+tax)}</h4>
+    {
+        props.children
+    }
         </div>
     );
 };
